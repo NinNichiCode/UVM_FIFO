@@ -1,0 +1,498 @@
+# vsim -c -coverage tb_top "+UVM_TESTNAME=sfifo_test" -do "run -all; coverage save -onexit -assert -directive -cvg -codeAll sfifo_test.ucdb; quit" 
+# Start time: 14:59:41 on Apr 21,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Sim-64
+# //  Version 10.7c win64 Aug 18 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.sfifo_interface(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.sfifo_agent_pkg(fast)
+# Loading work.sfifo_environment_pkg(fast)
+# Loading work.sfifo_sequence_pkg(fast)
+# Loading work.sfifo_test_pkg(fast)
+# Loading work.tb_top_sv_unit(fast)
+# Loading work.tb_top(fast)
+# Loading work.sync_fifo(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading D:/questasim_b_install/uvm-1.1d\win64\uvm_dpi.dll
+# run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(216) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test sfifo_test...
+# UVM_INFO sfifo_sequence.svh(10) @ 0: uvm_test_top.m_env.sf_agt.sf_seqr@@m_seq [sfifo_sequence] -------- Generata 16 Write REQs --------
+# 
+# RD is high
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 50: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: c0 full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 70: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 27 full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 90: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: c0 output_data: c0 empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 110: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: cf full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 130: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 27 output_data: 0 empty: 0
+# -------------- Fail! --------------
+# ----------- Check Empty -----------
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 150: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: cf output_data: 0 empty: 1
+# -------------- Fail! --------------
+# ----------- Check Empty -----------
+# 
+# RD is high
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 190: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 40 full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 210: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 40 output_data: 40 empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 230: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 3b full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 250: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: a full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 270: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 3b output_data: 3b empty: 0
+# -------------- Pass! --------------
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 290: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: a output_data: a empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 310: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 1b full: 0
+# UVM_INFO sfifo_sequence.svh(18) @ 320: uvm_test_top.m_env.sf_agt.sf_seqr@@m_seq [sfifo_sequence] -------- Generate 16 Read REQs --------
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 330: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 1b output_data: 1b empty: 0
+# -------------- Pass! --------------
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# UVM_INFO sfifo_sequence.svh(26) @ 640: uvm_test_top.m_env.sf_agt.sf_seqr@@m_seq [sfifo_sequence] -------- Generata 32 Random REQs --------
+# 
+# RD is high
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 670: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: a3 full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 690: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: a3 output_data: a3 empty: 0
+# -------------- Pass! --------------
+# 
+# RD is high
+# 
+# RD is high
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 750: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: c8 full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 770: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: c8 output_data: c8 empty: 0
+# -------------- Pass! --------------
+# 
+# RD is high
+# 
+# RD is high
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 830: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 77 full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 850: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 77 output_data: 77 empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 870: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: c2 full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 890: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: c2 output_data: c2 empty: 0
+# -------------- Pass! --------------
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# RD is high
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1010: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 61 full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 1030: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 61 output_data: 61 empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1050: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 7d full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 1070: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 7d output_data: 7d empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1090: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 75 full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1110: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 92 full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1130: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 5f full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 1150: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 75 output_data: 75 empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1170: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 3f full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1190: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 74 full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1210: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 22 full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1230: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: da full: 0
+# 
+# RD is high
+# UVM_INFO sfifo_scoreboard.svh(25) @ 1250: uvm_test_top.m_env.sf_scb [Read Data] comp_reg: 92 output_data: 92 empty: 0
+# -------------- Pass! --------------
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1270: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 73 full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1290: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 2b full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1310: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 3e full: 0
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1330: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 52 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1350: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: e6 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1370: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 2 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1390: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: d8 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1410: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 61 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1430: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: df full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1450: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 84 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1470: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 67 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1490: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 40 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1510: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 71 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1530: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 81 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1550: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 5 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1570: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: b3 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1590: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 0 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1610: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: ef full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1630: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 30 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1650: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 93 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1670: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: de full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1690: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: ea full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1710: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 69 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1730: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 5 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1750: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: b3 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1770: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 11 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1790: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: be full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1810: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: dd full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1830: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 57 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1850: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: b2 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1870: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 7 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1890: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: fe full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1910: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: a8 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1930: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: fe full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1950: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 61 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1970: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: b4 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 1990: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 61 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2010: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 38 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2030: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 55 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2050: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: d5 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2070: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: 11 full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2090: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2110: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2130: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2150: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2170: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2190: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2210: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2230: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2250: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2270: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2290: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2310: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2330: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2350: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2370: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2390: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2410: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2430: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2450: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2470: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2490: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2510: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2530: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2550: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2570: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2590: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2610: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2630: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2650: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2670: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2690: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2710: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2730: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2750: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2770: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2790: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2810: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2830: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2850: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2870: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# 
+# WR is high
+# UVM_INFO sfifo_scoreboard.svh(19) @ 2890: uvm_test_top.m_env.sf_scb [Write Data] wr_en: 1 rd_en: 0 input_data: db full: 1
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 2980: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :  124
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [Questa UVM]     2
+# [RNTST]     1
+# [Read Data]    15
+# [TEST_DONE]     1
+# [Write Data]   102
+# [sfifo_sequence]     3
+# ** Note: $finish    : D:/questasim_b_install/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 2980 ps  Iteration: 53  Instance: /tb_top
+# End time: 14:59:50 on Apr 21,2025, Elapsed time: 0:00:09
+# Errors: 0, Warnings: 0

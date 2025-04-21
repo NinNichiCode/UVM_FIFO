@@ -1,0 +1,9 @@
+sfifo_coverage.svh
+sfifo_environment_pkg.sv
+sfifo_interface.sv
+sfifo_sequence.svh
+sfifo_sequence_pkg.sv
+sfifo_test.svh
+sfifo_test_pkg.sv
+sync_fifo.v
+tb_top.sv

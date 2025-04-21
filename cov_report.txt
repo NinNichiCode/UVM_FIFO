@@ -1,0 +1,427 @@
+Coverage Report by file with details
+
+=================================================================================
+=== File: sfifo_interface.sv
+=================================================================================
+Statement Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           11        11         0    100.00
+
+================================Statement Details================================
+
+Statement Coverage for file sfifo_interface.sv --
+
+    1                                                	`include "uvm_macros.svh"
+    2                                                interface sfifo_interface(input clk, reset);
+    3                                                	bit wr_en;
+    4                                                	bit rd_en;
+    5                                                	bit [7:0] input_data;
+    6                                                	bit full;
+    7                                                	bit empty;
+    8                                                	bit [7:0] output_data;		// co the thay bit --> logic
+    9                                                	// Further code here
+    10              1                          1     	clocking drv_cb @(posedge clk);
+    11                                               		default input #1 output #1;
+    12                                               		output wr_en;
+    13                                               		output rd_en;
+    14                                               		output input_data;
+    15              1                          1     		input full;
+    16              1                          1     		input empty;
+    17              1                          1     		input output_data;
+    18                                               	endclocking
+    19              1                          1     	clocking mon_cb @(posedge clk);
+    20                                               		default input #1 output #1;
+    21              1                          1     		input wr_en;
+    22              1                          1     		input rd_en;
+    23              1                          1     		input input_data;
+    24              1                          1     		input full;
+    25              1                          1     		input empty;
+    26              1                          1     		input output_data;
+    27                                               	endclocking
+    28                                               	modport drv_mp (input clk, reset, clocking drv_cb);
+    29                                               	modport mon_mp (input clk, reset, clocking mon_cb);
+    30                                               endinterface
+
+Toggle Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Toggle Bins                     44        43         1     97.72
+
+================================Toggle Details================================
+
+Toggle Coverage for File sfifo_interface.sv --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+          2                                  reset           0           1       50.00 
+
+Total Node Count     =         22 
+Toggled Node Count   =         21 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      97.72% (43 of 44 bins)
+
+=================================================================================
+=== File: sfifo_test.svh
+=================================================================================
+Statement Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           11         9         2     81.81
+
+================================Statement Details================================
+
+Statement Coverage for file sfifo_test.svh --
+
+    1                                                class sfifo_test extends uvm_test;
+    2                                                    `uvm_component_utils(sfifo_test)
+    3                                                
+    4               1                    ***0***         sfifo_environment m_env;
+    4               2                    ***0***     
+    4               3                          1     
+    5                                                    sfifo_sequence m_seq;
+    6                                                
+    7               1                          1         function new(string name = "sfifo_test", uvm_component parent = null);
+    8                                                        super.new(name, parent);
+    9                                                    endfunction
+    10                                               
+    11              1                          1         virtual function void build_phase(uvm_phase phase);
+    12              1                          1             super.build_phase(phase);
+    13              1                          1             m_env = sfifo_environment::type_id::create("m_env", this);
+    14                                                       m_seq = sfifo_sequence::type_id::create("m_seq", this); // Hoặc có thể đổi thành tên khác nếu test khác
+    15                                                   endfunction
+    16                                               
+    17                                                   virtual task run_phase(uvm_phase phase);
+    18              1                          1             phase.raise_objection(this);
+    19              1                          1             m_seq.start(m_env.sf_agt.sf_seqr);
+    20              1                          1             phase.phase_done.set_drain_time(this, 100); // để trước drop
+    21              1                          1             phase.drop_objection(this);
+    22                                                   endtask
+    23                                               endclass
+
+
+=================================================================================
+=== File: sync_fifo.v
+=================================================================================
+Statement Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           18        18         0    100.00
+
+================================Statement Details================================
+
+Statement Coverage for file sync_fifo.v --
+NOTE: The modification timestamp for source file 'sync_fifo.v' has been altered since compilation.
+
+    1                                                module sync_fifo (
+    2                                                					clk,	// The Synchronous FIFO has 
+    3                                                							// a single clock port for both data-read and data-write operations, 
+    4                                                							// it means it is used for synchronising across two process 
+    5                                                							// when two process are running on same clock
+    6                                                					reset,
+    7                                                					wr_en,		// Write Enable
+    8                                                					rd_en,		// Read Enable
+    9                                                					input_data,
+    10                                               					empty,
+    11                                               					full,
+    12                                               					output_data
+    13                                               );
+    14                                               
+    15                                               parameter DEPTH = 16;			// D1-D16
+    16                                               parameter WIDTH = 8;			// 8-bit Data
+    17                                               parameter POINTER_WIDTH = 4;	// 4-bit Address
+    18                                               
+    19                                               input clk;
+    20                                               input reset;
+    21                                               input wr_en;
+    22                                               input rd_en;
+    23                                               input [WIDTH-1:0] input_data;
+    24                                               output empty;
+    25                                               output full;
+    26                                               output [WIDTH-1:0] output_data;
+    27                                               
+    28                                               reg [POINTER_WIDTH:0] wr_ptr;	// Write Pointer
+    29                                               reg [POINTER_WIDTH:0] rd_ptr;	// Read Pointer
+    30                                               reg empty;
+    31                                               reg full;
+    32                                               reg [WIDTH-1:0] output_data;
+    33                                               
+    34                                               reg [WIDTH-1:0] static_mem [DEPTH-1:0]; // Static Memory
+    35                                               
+    36                                               wire [POINTER_WIDTH-1:0] wr_ptr_int;
+    37                                               wire [POINTER_WIDTH-1:0] rd_ptr_int;
+    38                                               wire [POINTER_WIDTH:0] wr_rd;
+    39                                               wire put_e;
+    40                                               wire get_e;
+    41                                               
+    42              1                         47     assign wr_rd = wr_ptr - rd_ptr;
+    43              1                         61     assign put_e = (wr_en && full == 1'b0);
+    44              1                         89     assign get_e = (rd_en && empty == 1'b0);
+    45              1                         27     assign wr_ptr_int = wr_ptr[POINTER_WIDTH-1:0];
+    46              1                         22     assign rd_ptr_int = rd_ptr[POINTER_WIDTH-1:0];
+    47                                               
+    48              1                         93     always @ (posedge clk)
+    49                                               	begin
+    50                                               		if (!reset)
+    51                                               			begin
+    52              1                          1     				wr_ptr <= 3'b000;
+    53              1                          1     				rd_ptr <= 3'b000;
+    54                                               			end 
+    55                                               		else
+    56                                               			begin
+    57                                               				if (put_e)
+    58                                               					begin
+    59              1                         25     						static_mem [wr_ptr_int] <= input_data;
+    60              1                         25     						wr_ptr <= wr_ptr + 3'b001;
+    61                                               					end
+    62                                               				if (get_e)
+    63                                               					begin
+    64              1                         20     						rd_ptr <= rd_ptr + 3'b001;
+    65                                               					end
+    66                                               			end
+    67                                               	end
+    68                                               
+    69              1                         21     always @ (rd_ptr_int)
+    70                                               	begin
+    71              1                         21     		output_data <= static_mem [rd_ptr_int - 3'b001];
+    72                                               	end
+    73                                               
+    74              1                         63     always @ (posedge clk) 
+    75                                               	begin
+    76                                               		if (!reset)
+    77                                               			begin
+    78              1                          1     				full <= 1'b0;
+    79              1                          1     				empty <= 1'b0;				
+    80                                               			end
+    81                                               		else
+    82                                               			begin
+    83              1                         62     				full <= (wr_rd == 4'b1000);
+    84              1                         62     				empty <= (wr_rd == 4'b0000);
+    85                                               			end
+    86                                               	end
+    87                                               
+    88                                               endmodule
+
+Branch Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Branches                         8         8         0    100.00
+
+================================Branch Details================================
+
+Branch Coverage for file sync_fifo.v --
+NOTE: The modification timestamp for source file 'sync_fifo.v' has been altered since compilation.
+
+------------------------------------IF Branch------------------------------------
+    50                                        93     Count coming in to IF
+    50              1                          1     		if (!reset)
+    55              1                         92     		else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    57                                        92     Count coming in to IF
+    57              1                         25     				if (put_e)
+                                              67     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    62                                        92     Count coming in to IF
+    62              1                         20     				if (get_e)
+                                              72     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    76                                        63     Count coming in to IF
+    76              1                          1     		if (!reset)
+    81              1                         62     		else
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Expression Coverage:
+    Enabled Coverage            Active   Covered    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    FEC Expression Terms             6         6         0    100.00
+
+================================Expression Details================================
+
+Expression Coverage for file sync_fifo.v --
+NOTE: The modification timestamp for source file 'sync_fifo.v' has been altered since compilation.
+
+----------------Focused Expression View-----------------
+Line       43 Item    1  (wr_en && ~full)
+Expression totals: 2 of 2 input terms covered = 100.00%
+
+----------------Focused Expression View-----------------
+Line       44 Item    1  (rd_en && ~empty)
+Expression totals: 2 of 2 input terms covered = 100.00%
+
+----------------Focused Expression View-----------------
+Line       83 Item    1  (wr_rd == 8)
+Expression totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Expression View-----------------
+Line       84 Item    1  (wr_rd == 0)
+Expression totals: 1 of 1 input term covered = 100.00%
+
+
+Toggle Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Toggle Bins                     94        89         5     94.68
+
+================================Toggle Details================================
+
+Toggle Coverage for File sync_fifo.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         20                                  reset           0           1       50.00 
+         28                              wr_ptr[4]           0           1       50.00 
+         29                              rd_ptr[4]           0           1       50.00 
+         38                               wr_rd[4]           0           0        0.00 
+
+Total Node Count     =         47 
+Toggled Node Count   =         43 
+Untoggled Node Count =          4 
+
+Toggle Coverage      =      94.68% (89 of 94 bins)
+
+=================================================================================
+=== File: tb_top.sv
+=================================================================================
+Statement Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                            8         8         0    100.00
+
+================================Statement Details================================
+
+Statement Coverage for file tb_top.sv --
+NOTE: The modification timestamp for source file 'tb_top.sv' has been altered since compilation.
+
+    1                                                `timescale 1ps/1ps
+    2                                                `include "sfifo_interface.sv"
+    3                                                `include "uvm_macros.svh"
+    4                                                `include "sfifo_test_pkg.sv"
+    5                                                import uvm_pkg::*;
+    6                                                import sfifo_test_pkg::*;
+    7                                                module tb_top;
+    8                                                	bit clk;
+    9                                                	bit reset;
+    10                                               	always #5 clk = ~clk;
+    11                                               	initial begin
+    12                                               		clk = 1'b1;
+    13              1                        277     		reset = 1'b0;
+    13              2                        276     
+    14                                               		#5
+    15                                               		reset = 1'b1;
+    16              1                          1     		#100 reset = 1'b0;
+    17              1                          1     		#20 reset = 1'b1;
+    18              1                          1     	end
+    19              1                          1     	sfifo_interface tif(clk, reset);
+    20                                               	sync_fifo dut(.clk(tif.clk), .reset(tif.reset),
+    21                                               				  .input_data(tif.input_data),
+    22                                               				  .wr_en(tif.wr_en),
+    23                                               				  .rd_en(tif.rd_en),
+    24                                               				  .full(tif.full),
+    25                                               				  .empty(tif.empty),
+    26                                               				  .output_data(tif.output_data));
+    27                                               	initial begin
+    28                                               		uvm_config_db#(virtual sfifo_interface)::set(null, "*", "vif", tif);
+    29                                               		run_test();
+    30                                               	end
+    31                                               endmodule
+    20                                               	sync_fifo dut(.clk(tif.clk), .reset(tif.reset),
+    21                                               				  .input_data(tif.input_data),
+    22                                               				  .wr_en(tif.wr_en),
+    23                                               				  .rd_en(tif.rd_en),
+    24                                               				  .full(tif.full),
+    25                                               				  .empty(tif.empty),
+    26                                               				  .output_data(tif.output_data));
+    27                                               	initial begin
+    28                                               		uvm_config_db#(virtual sfifo_interface)::set(null, "*", "vif", tif);
+    29                                               		run_test();
+    30                                               	end
+    31                                               endmodule
+
+Toggle Coverage:
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Toggle Bins                      4         3         1     75.00
+
+================================Toggle Details================================
+
+Toggle Coverage for File tb_top.sv --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         11                                  reset           0           1       50.00 
+
+Total Node Count     =          2 
+Toggled Node Count   =          1 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      75.00% (3 of 4 bins)
+
+COVERGROUP COVERAGE:
+-----------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal    Status               
+                                                                                              
+-----------------------------------------------------------------------------------------------
+ TYPE /sfifo_environment_pkg/sfifo_coverage/cov_inst 
+                                                      100.00%        100    Covered              
+    covered/total bins:                                    10         10                      
+    missing/total bins:                                     0         10                      
+    % Hit:                                            100.00%        100                      
+    Coverpoint cov_inst::WR_EN                        100.00%        100    Covered              
+        covered/total bins:                                 1          1                      
+        missing/total bins:                                 0          1                      
+        % Hit:                                        100.00%        100                      
+        bin bwr                                            64          1    Covered              
+    Coverpoint cov_inst::RD_EN                        100.00%        100    Covered              
+        covered/total bins:                                 1          1                      
+        missing/total bins:                                 0          1                      
+        % Hit:                                        100.00%        100                      
+        bin brd                                            64          1    Covered              
+    Coverpoint cov_inst::FULL                         100.00%        100    Covered              
+        covered/total bins:                                 1          1                      
+        missing/total bins:                                 0          1                      
+        % Hit:                                        100.00%        100                      
+        bin bf1                                            64          1    Covered              
+    Coverpoint cov_inst::EMPTY                        100.00%        100    Covered              
+        covered/total bins:                                 1          1                      
+        missing/total bins:                                 0          1                      
+        % Hit:                                        100.00%        100                      
+        bin bep                                            64          1    Covered              
+    Coverpoint cov_inst::INPUT_DATA                   100.00%        100    Covered              
+        covered/total bins:                                 3          3                      
+        missing/total bins:                                 0          3                      
+        % Hit:                                        100.00%        100                      
+        bin low                                             7          1    Covered              
+        bin med                                            25          1    Covered              
+        bin high                                           32          1    Covered              
+    Coverpoint cov_inst::OUTPUT_DATA                  100.00%        100    Covered              
+        covered/total bins:                                 3          3                      
+        missing/total bins:                                 0          3                      
+        % Hit:                                        100.00%        100                      
+        bin low                                            10          1    Covered              
+        bin med                                            21          1    Covered              
+        bin high                                           33          1    Covered              
+
+TOTAL COVERGROUP COVERAGE: 100.00%  COVERGROUP TYPES: 1
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/sfifo_sequence_pkg/sfifo_sequence/body/#ublk#94048743#11/immed__14
+                     sfifo_sequence.svh(14)             0          1
+/sfifo_sequence_pkg/sfifo_sequence/body/#ublk#94048743#19/immed__22
+                     sfifo_sequence.svh(22)             0          1
+/sfifo_sequence_pkg/sfifo_sequence/body/#ublk#94048743#27/immed__30
+                     sfifo_sequence.svh(30)             0          1
+
+Total Coverage By File (code coverage only, filtered view): 97.72%
+
